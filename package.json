@@ -18,5 +18,8 @@
   "license": "MIT",
   "engines": {
     "node": "5.8.0"
+  },
+  "dependencies": {
+    "express": "^4.11.0"
   }
 }
