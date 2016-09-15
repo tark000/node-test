@@ -42,8 +42,8 @@ app.get('/',function(req,res){
   //__dirname : It will resolve to your project folder.
 });
 
-app.get('/about',function(req,res){
-  res.sendFile(path.join(__dirname+'/about.html'));
+app.get('/next',function(req,res){
+  res.sendFile(path.join(__dirname+'/frontend/tmpl/next.html'));
 });
 
 app.get('/sitemap',function(req,res){
