@@ -8,8 +8,8 @@ app.get('/',function(req,res){
   //__dirname : It will resolve to your project folder.
 });
 
-app.get('/next',function(req,res){
-  res.sendFile(path.join(__dirname+'/assets/tmpl/next.html'));
+app.get('/create-note',function(req,res){
+  res.sendFile(path.join(__dirname+'/assets/index.html'));
 });
 
 

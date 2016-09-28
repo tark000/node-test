@@ -33,8 +33,8 @@ var gulp = require('gulp');
     });
 
     gulp.task('copy', ['scss'], function() {
-        gulp.src(['./app/assets/**/*.html','./app/assets**/*.css'])
-            .pipe(gulp.dest('./app/public'))
+        gulp.src(['./app/assets/**/*.html','./app/assets/**/*.css'])
+            .pipe(gulp.dest('./app/public/assets'))
     });
 
     gulp.task('scss', function() {
