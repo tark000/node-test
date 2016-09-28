@@ -1,3 +1,10 @@
-console.log('test message55');
+var myApp = angular.module('myApp', ['ngRoute']);
 
-var app = angular.module('myApp', []);
+myApp.config(['$routeProvider', '$locationProvider',
+	function($routeProvider, $locationProvider){
+		$routeProvider
+		.when('/', {
+			templateUrl: '/public/assets/tmpl/home.html',
+			controller: 'HomeController'
+		})
+}]);

@@ -5,6 +5,8 @@ var gulp = require('gulp');
     var uglify = require('gulp-uglify');
     var concat = require('gulp-concat');
     var watch = require('gulp-watch');
+    var plumber = require('gulp-plumber');
+    var notify = require('gulp-notify');
     // var environments = require('gulp-environments');
 
     // var development = environments.development;
@@ -20,21 +22,24 @@ var gulp = require('gulp');
 
     gulp.task('scripts', function(){
         return gulp.src([
-                './node_modules/angular/angular.js',
-                './app/assets/**/*.js'
-                ])
-                .pipe(uglify())
-                .pipe(concat('main.min.js'))
-                .pipe(gulp.dest('./app/public/assets/js'));
+            './node_modules/angular/angular.js',
+            './node_modules/angular-route/angular-route.js',
+            './app/assets/**/*.js'
+            ])
+            .pipe(plumber({errorHandler: onError}))
+            .pipe(uglify())
+            .pipe(concat('main.min.js'))
+            .pipe(gulp.dest('./app/public/assets/js'));
     });
 
     gulp.task('copy', ['scss'], function() {
-        gulp.src(['./app/**/*.html','./app/**/*.css'])
+        gulp.src(['./app/assets/**/*.html','./app/assets**/*.css'])
             .pipe(gulp.dest('./app/public'))
     });
 
     gulp.task('scss', function() {
         gulp.src('./app/assets/scss/*.scss')
+            .pipe(plumber({errorHandler: onError}))
             .pipe(sass().on('error', sass.logError))
             .pipe(gulp.dest('./app/assets/stylesheets/'));
     });
@@ -68,3 +73,11 @@ var gulp = require('gulp');
     //     gulp.watch("./app/**/*.*", ["build"]);
     //     gulp.watch("./app/public/**/*.*").on('change', browserSync.reload);
     // })
+
+var onError = function(err) {
+    notify.onError({
+      title: "Gulp error in " + err.plugin,
+      message: err.toString()
+    })(err);
+    this.emit('end');
+};
