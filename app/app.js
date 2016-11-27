@@ -16,3 +16,15 @@ app.get('/create-note',function(req,res){
 app.listen(port);
 
 console.log("Running at Port 3000");
+
+
+var pgp = require("pg-promise")(/*options*/);
+var db = pgp("postgres://root1:asdf@localhost/test");
+
+db.query("SELECT * FROM notes;", undefined)
+    .then(function (data) {
+        console.log("DATA:", data[1].title);
+    })
+    .catch(function (error) {
+        console.log("ERROR:", error);
+    });

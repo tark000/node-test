@@ -24,10 +24,12 @@ var gulp = require('gulp');
         return gulp.src([
             './node_modules/angular/angular.js',
             './node_modules/angular-route/angular-route.js',
+            './node_modules/simplewebrtc/latest.js',
+            './node_modules/ng-simple-webrtc/ng-simple-webrtc.js',
             './app/assets/**/*.js'
             ])
             .pipe(plumber({errorHandler: onError}))
-            .pipe(uglify())
+            // .pipe(uglify())
             .pipe(concat('main.min.js'))
             .pipe(gulp.dest('./app/public/assets/js'));
     });
@@ -38,7 +40,7 @@ var gulp = require('gulp');
     });
 
     gulp.task('scss', function() {
-        gulp.src('./app/assets/scss/*.scss')
+        gulp.src('./app/assets/scss/**/*.scss')
             .pipe(plumber({errorHandler: onError}))
             .pipe(sass().on('error', sass.logError))
             .pipe(gulp.dest('./app/assets/stylesheets/'));

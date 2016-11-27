@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute','SimpleWebRTC']);
 
 myApp.config(['$routeProvider', '$locationProvider',
 	function($routeProvider, $locationProvider){
